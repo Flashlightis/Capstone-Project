@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# Open Data Sets ---
+df3<- read.csv("web_data3.csv")
+df3_years<- read.csv("web_data3_years.csv")
+df3_month <- read.csv("web_data3_month.csv")
+
+# Simple Plots of Sessions ---
+
+ggplot(df3_years, aes(year, Sessions)) + 
+  geom_line()
+
+ggplot(df3_month, aes(month, Sessions)) +
+  geom_line()
+
+ggplot(df3_2013, aes(Date, Sessions)) +
+      geom_line()
+
+# Simple Plots of Pageviews ---
+
+ggplot(df3_years, aes(year, Pageviews)) + 
+      geom_line()
+
+ggplot(df3_month, aes(month, Pageviews)) +
+      geom_line()
+
+ggplot(df3_2013, aes(Date, Pageviews)) +
+      geom_line()
+```
+
+

@@ -1,0 +1,61 @@
+---
+title: "Data Cleaning"
+author: "Byron Richards"
+date: "April 29, 2018"
+output: html_document
+---
+
+`''
+# INSTALL PACKAGES ---
+
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("readxl")
+library(readxl)
+install.packages("dplyr")
+library(dplyr)
+install.packages("tidyr")
+library(tidyr)
+
+# UPLOAD GOOGLE ANALYTICS DATASETS ---
+sd_v_ns <- read_excel("Avg_Sessions.xlsx")
+head(sd_v_ns)
+
+p_v_br <- read_excel("Page_vs_Bounce.xlsx")
+head(p_v_br)
+
+s_v_p <- read_excel("Sessions_vs_Pages.xlsx")
+head(s_v_p)
+
+user_v_new <- read_excel("Users.xlsx")
+head(user_v_new)
+
+# COMBINE TO SINGLE TABLE
+df <- left_join(sd_v_ns, p_v_br, by = "Day Index")
+head(df)
+df <- left_join(df, s_v_p, by = "Day Index")
+df <- left_join(df, user_v_new, by = "Day Index")
+
+# Remove Missing Values ---
+df[!complete.cases(df),]
+df1 <- na.omit(df)
+
+# Rename Columns
+df3 <- rename(df, Day.Index = Date, New_Users = New.Users, Number_Session = Number.of.Sessions.per.User,
+              Pages_Session = Pages...Session, Avg_S_Duration = Avg..Session.Duration)
+df3 <- rename(df, Bounce = Bounce.Rate)
+
+# Examine Variable Class ---
+str(df3)
+
+# Change Class Values ---
+df3$Pageviews = as.numeric(df3$Pageviews)
+df3$Sessions = as.numeric(df3$Sessions)
+df3$Users = as.numeric(df3$Users)
+df3$New_Users = as.numeric(df3$New_Users)
+df3$Date = as.Date(df3$Date)
+
+# Save Dataset as csv ---
+write.csv(df3, "web_data3.csv")
+```
+

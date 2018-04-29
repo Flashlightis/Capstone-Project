@@ -1,0 +1,68 @@
+---
+title: "Subsetting Data"
+output: html_notebook
+---
+
+```{r}
+
+# INSTALL PACKAGES ---
+
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("readxl")
+library(readxl)
+install.packages("dplyr")
+library(dplyr)
+install.packages("tidyr")
+library(tidyr)
+
+#Load Dataset ---
+df3<- read.csv("web_data3.csv")
+
+# Mean Data by Year ---
+df3_m <- mutate(df3, 
+                year = as.POSIXlt(Date)$year + 1900)
+df3_m_y <- group_by(df3_m, year)
+
+df3_years <- summarize(df3_m_y, Sessions = mean(Sessions, na.rm = TRUE), 
+                       Pageviews = mean(Pageviews, na.rm = TRUE),
+                       Users = mean(Users, na.rm = TRUE), 
+                       New_Users = mean(New_Users, na.rm = TRUE),
+                       Number_Session = mean(Number_Session, na.rm = TRUE),
+                       Pages_Session = mean(Pages_Session, na.rm = TRUE),
+                       Avg_S_Duration = mean(Avg_S_Duration, na.rm = TRUE),
+                       Bounce = mean(Bounce, na.rm = TRUE))
+
+View(df3_years)
+
+# Mean Data by Month ---
+df3_m2 <- mutate(df3, 
+                month = as.POSIXlt(Date)$mon + 1)
+df3_m2 <- group_by(df3_m2, month)
+
+df3_month <- summarize(df3_m2, Sessions = mean(Sessions, na.rm = TRUE), 
+                       Pageviews = mean(Pageviews, na.rm = TRUE),
+                       Users = mean(Users, na.rm = TRUE), 
+                       New_Users = mean(New_Users, na.rm = TRUE),
+                       Number_Session = mean(Number_Session, na.rm = TRUE),
+                       Pages_Session = mean(Pages_Session, na.rm = TRUE),
+                       Avg_S_Duration = mean(Avg_S_Duration, na.rm = TRUE),
+                       Bounce = mean(Bounce, na.rm = TRUE))
+
+# Filter Raw Data by Year ---
+df3_2012 <- subset(df3, Date < "2013-01-01")
+df3_2013 <- subset(df3, Date > "2012-12-31" & Date < "2014-01-01")
+df3_2014 <- subset(df3, Date > "2013-12-31" & Date < "2015-01-01")
+df3_2015 <- subset(df3, Date > "2014-12-31" & Date < "2016-01-01")
+df3_2016 <- subset(df3, Date > "2015-12-31" & Date < "2017-01-01")
+df3_2017 <- subset(df3, Date > "2016-12-31" & Date < "2018-01-01")
+df3_2018 <- subset(df3, Date > "2017-12-31")
+
+# Save Data ---
+write.csv(df3, "web_data3.csv")
+write.csv(df3_years, "web_data3_years.csv")
+write.csv(df3_month, "web_data3_month.csv")
+
+```
+
+
