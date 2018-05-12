@@ -1,0 +1,70 @@
+---
+title: "Session Plots"
+author: "Byron Richards"
+date: "May 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+boxplot(df3$Sessions,
+        main = "Boxplot of Total Sessions",
+        xlab = "Number Value - Sessions",
+        ylab = "Sessions from 2012-2018",
+        col = "orange",
+        border = "brown",
+        horizontal = TRUE,
+        notch = TRUE
+)
+```
+
+## Boxplots
+
+
+```{r cars}
+boxplot(df3$Pageviews,
+        main = "Boxplot of Total Pageviews Sessions",
+        xlab = "Number Value - Pageviews",
+        ylab = "Pageviews from 2012-2018",
+        col = "orange",
+        border = "brown",
+        horizontal = TRUE,
+        notch = TRUE
+)
+```
+
+## Barplot of Sessions per Year
+
+```{r pressure, echo=FALSE}
+barplot(df3_years$Sessions,
+        main = "Bar Chart of Mean Sessions by Year",
+        xlab = "Year",
+        ylab = "Number of Sessions",
+        names.arg = c("2012", "2013", "2014", "2015", "2016", "2017", "2018"),
+        col = "green")
+```
+
+## Barplot of Mean Sessions by Month
+
+```{r pressure, echo=FALSE}
+barplot(df3_month$Sessions,
+        main = "Bar Chart of Mean Sessions by Month",
+        xlab = "Month",
+        ylab = "Number of Sessions",
+        names.arg = c("January", "February", "March", "April", "May", "June", 
+                      "July", "August", "September", "October", "November", 
+                      "December"),
+        col = "green")
+```
+
+## Barplot of Sessions by Year
+
+```{r pressure, echo=FALSE}
+barplot(df3_Total_year$Sessions,
+        main = "Bar Chart of Total Sessions by Year",
+        xlab = "Year",
+        ylab = "Number of Sessions",
+        names.arg = c("2012", "2013", "2014", "2015", "2016", "2017", "2018"),
+        col = "darkred")
+```
