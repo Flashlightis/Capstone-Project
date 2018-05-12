@@ -35,6 +35,21 @@ df3_years <- summarize(df3_m_y, Sessions = mean(Sessions, na.rm = TRUE),
 
 View(df3_years)
 
+```
+
+```{r}
+
+# INSTALL PACKAGES ---
+
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("readxl")
+library(readxl)
+install.packages("dplyr")
+library(dplyr)
+install.packages("tidyr")
+library(tidyr)
+
 # Mean Data by Month ---
 df3_m2 <- mutate(df3, 
                 month = as.POSIXlt(Date)$mon + 1)
@@ -48,6 +63,26 @@ df3_month <- summarize(df3_m2, Sessions = mean(Sessions, na.rm = TRUE),
                        Pages_Session = mean(Pages_Session, na.rm = TRUE),
                        Avg_S_Duration = mean(Avg_S_Duration, na.rm = TRUE),
                        Bounce = mean(Bounce, na.rm = TRUE))
+
+## Save Data ---
+write.csv(df3, "web_data3.csv")
+write.csv(df3_years, "web_data3_years.csv")
+write.csv(df3_month, "web_data3_month.csv")
+
+```
+
+```{r}
+
+# INSTALL PACKAGES ---
+
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("readxl")
+library(readxl)
+install.packages("dplyr")
+library(dplyr)
+install.packages("tidyr")
+library(tidyr)
 
 # Filter Raw Data by Year ---
 df3_2012 <- subset(df3, Date < "2013-01-01")
@@ -64,5 +99,3 @@ write.csv(df3_years, "web_data3_years.csv")
 write.csv(df3_month, "web_data3_month.csv")
 
 ```
-
-
