@@ -1,0 +1,8 @@
+df3_month_bar <- ggplot(df3_month, aes(x = month, y = Number, fill = Web_Metric)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ggtitle("Total Sessions, Users, and New Users by Month in 2013") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Web Metrics", y = "Count") +
+  scale_x_discrete(limits = c("Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"))
+  
+  # Repeated for 2014-2017
