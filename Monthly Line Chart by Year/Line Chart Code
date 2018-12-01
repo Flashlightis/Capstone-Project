@@ -6,3 +6,9 @@ df3_month_Line <- ggplot(df3_month, aes(x = month, y = Number, col = Web_Metric)
   scale_x_discrete(limits = c("Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"))
   
   # Repeated for each additional year: 2014-2017
+# All Years
+df3_ty3_line <- ggplot(df3_ty3, aes(x = year, y = Number, col = Web_Metric)) +
+  geom_line() +
+  ggtitle("Total Sessions, Users, and New Users 2012-2018") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Web Metrics", y = "Count")
