@@ -1,0 +1,19 @@
+## determining the marketing success of campiagns by determing the mean of campiagn dates
+
+traffic_2018$Date = as.Date(traffic_2018$Date) # change Date from factor to Date in order to subset
+
+success_2018_1 <- subset(traffic_2018, Date > "2018-02-28" & Date < "2018-05-26")
+
+summary(success_2018_1)
+
+success_2018_2 <- subset(traffic_2018, Date > "2018-08-13" & Date < "2018-09-01")
+summary(success_2018_2)
+
+# determing the mean for the same dates as marketing campaigns in 2018 but in 2017 to see increase
+
+mape_2017_2$Date = as.Date(mape_2017_2$Date)
+compare_2017_1 <- subset(mape_2017_2, Date > "2017-02-28" & Date < "2017-05-26")
+summary(compare_2017_1)
+
+compare_2017_2 <- subset(mape_2017_2, Date > "2017-08-13" & Date < "2017-09-01")
+summary(compare_2017_2)
